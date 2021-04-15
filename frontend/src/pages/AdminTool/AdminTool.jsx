@@ -102,9 +102,9 @@ const Admin = observer(() => {
         <div className={classes.drawerContainer}>
           <List>
             {[
-              { text: '文章数量监控', key: 'article' },
               { text: '北京话生成器', key: 'beijinghua' },
               { text: '复读机', key: 'repeater' },
+              { text: '导入文件', key: 'file' },
             ].map((obj, index) => (
               <ListItem button key={obj.key} value={obj.key} onClick={handleRowClick}>
                 <ListItemText primary={obj.text} />
@@ -114,9 +114,8 @@ const Admin = observer(() => {
           <Divider />
           <List>
             {[
-              { text: '手动添加文章', key: 'add' },
-              { text: '导入文件', key: 'file' },
-              { text: '手动添加券商和公众号', key: 'publisher' },
+              { text: 'TODO: 社会实践', key: 'shsj' },
+              { text: 'TODO: 个人博客', key: 'blog' },
             ].map((obj, index) => (
               <ListItem button key={obj.key} value={obj.key} onClick={handleRowClick}>
                 <ListItemText primary={obj.text} />
@@ -128,13 +127,11 @@ const Admin = observer(() => {
       <main className={classes.content}>
         <Toolbar />
         <Typography paragraph>
-          {appId === 'article' && <ArticleTable />}
           {appId === 'beijinghua' && <Beijinghua />}
           {appId === 'repeater' && <Repeater />}
-          {appId === 'manual' && <ManualArticle />}
-          {appId === 'add' && <AddArticle />}
           {appId === 'file' && <FileUpload />}
-          {appId === 'publisher' && <AddPublisher />}
+          {appId === 'shsj' && <AddArticle />}
+          {appId === 'blog' && <AddPublisher />}
         </Typography>
       </main>
     </div>
