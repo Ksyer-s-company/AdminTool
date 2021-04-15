@@ -143,3 +143,5 @@ frontend/yarn.lock
 react-demo
 frontend/yarn.lock
 frontend.tar.gz
+
+frontend/package-lock.json
