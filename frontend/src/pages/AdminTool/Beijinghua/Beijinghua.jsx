@@ -4,18 +4,26 @@ import { action, observable, runInAction, toJS } from 'mobx';
 import { serverConfig } from '../../../config';
 import { Grid, Paper } from '@material-ui/core';
 // import { dataDetailsApi } from '../../../apis/DataMonitorApi';
-import { StyledTableCell, StyledTableRow } from '../ArticleAdmin/ArticleTable';
-import { history } from '../../../App';
-import { useParams } from 'react-router-dom';
 import { Button, TextField } from '@material-ui/core';
 import axios from 'axios';
-import { Switch, Redirect, Route, useRouteMatch } from 'react-router-dom';
+import SimpleSnackbar from '../AddArticle/SimpleSnackbar';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const SquarePaper = (props) => <Paper square {...props} />;
 
 const Beijinghua = observer(() => {
   const [inputStr, setInputStr] = useState('');
   const [outputStr, setOutputStr] = useState('');
+
+  const [warningMessage, setWarningMessage] = useState('init');
+  const [severity, setSeverity] = useState('info');
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+
+  const [copied, setCopied] = useState(false);
+
+  const handleSnackBarClose = () => {
+    setSnackBarOpen(false);
+  };
 
   const submit = (e) => {
     e.preventDefault();
@@ -24,6 +32,9 @@ const Beijinghua = observer(() => {
 
     let formData = new FormData();
     formData.append('input_str', inputStr);
+
+    var warningMessage;
+    var severity;
 
     axios({
       method: 'POST',
@@ -35,12 +46,20 @@ const Beijinghua = observer(() => {
     })
       .then((response) => response.data)
       .then((data) => {
-        if (data.data == "Success") {
-          setOutputStr(data,output_str);
+        console.log(data);
+        if (data.data == 'Success') {
+          setOutputStr(data.output_str);
         }
+        warningMessage = data.message;
+        severity = data.severity;
       })
       .catch((e) => {
         console.log('error: ', e);
+      })
+      .finally(() => {
+        setWarningMessage(warningMessage);
+        setSeverity(severity);
+        setSnackBarOpen(true);
       });
   };
 
@@ -74,6 +93,24 @@ const Beijinghua = observer(() => {
           </Grid>
         </form>
       </Grid>
+
+      {outputStr ? (
+        <Grid>
+          <br />
+          <div>{outputStr}</div>
+          <CopyToClipboard text={outputStr} onCopy={() => setCopied(true)}>
+            <button>Copy to clipboard with button</button>
+          </CopyToClipboard>
+        </Grid>
+      ) : (
+        <div></div>
+      )}
+      <SimpleSnackbar
+        snackBarOpen={snackBarOpen}
+        warningMessage={warningMessage}
+        severity={severity}
+        handleSnackBarClose={handleSnackBarClose}
+      />
     </Grid>
   );
 });
