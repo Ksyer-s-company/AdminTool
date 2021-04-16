@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
             <Grid item component="a" href="/">
               <img src="/logo.png" className={classes.logo} />
               <Typography variant="h5" display="inline">
-                Galaxy View
+                Ksyer's website
               </Typography>
             </Grid>
           </Grid>

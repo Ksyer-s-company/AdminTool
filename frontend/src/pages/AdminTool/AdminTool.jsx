@@ -14,14 +14,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import { history } from '../../App';
-import ArticleTable from './ArticleAdmin/ArticleTable';
 import FileUpload from './FileUpload/FileUpload';
-import ConceptList from './ConceptList/ConceptList';
-import ManualArticle from './ManualArticle/ManualArticle';
-import AddPublisher from './AddPublisher/AddPublisher';
-import AddArticle from './AddArticle/AddArticle';
 import Beijinghua from './Beijinghua/Beijinghua';
 import Repeater from './Repeater/Repeater';
+import SocialPractice from './SocialPractice/SocialPractice';
+import Blog from './Blog/Blog';
 
 const drawerWidth = 240;
 
@@ -85,7 +82,7 @@ const Admin = observer(() => {
           <a href="/" className={img_classes.a}>
             <img src="/logo.png" height="24" className={img_classes.logo} /> &nbsp;
             <Typography variant="h5" display="inline">
-              Galaxy View
+              Ksyer's website
             </Typography>
           </a>
         </Toolbar>
@@ -114,8 +111,8 @@ const Admin = observer(() => {
           <Divider />
           <List>
             {[
-              { text: 'TODO: 社会实践', key: 'shsj' },
-              { text: 'TODO: 个人博客', key: 'blog' },
+              { text: '社会实践', key: 'shsj' },
+              { text: '个人博客', key: 'blog' },
             ].map((obj, index) => (
               <ListItem button key={obj.key} value={obj.key} onClick={handleRowClick}>
                 <ListItemText primary={obj.text} />
@@ -130,8 +127,8 @@ const Admin = observer(() => {
           {appId === 'beijinghua' && <Beijinghua />}
           {appId === 'repeater' && <Repeater />}
           {appId === 'file' && <FileUpload />}
-          {appId === 'shsj' && <AddArticle />}
-          {appId === 'blog' && <AddPublisher />}
+          {appId === 'shsj' && <SocialPractice />}
+          {appId === 'blog' && <Blog />}
         </Typography>
       </main>
     </div>

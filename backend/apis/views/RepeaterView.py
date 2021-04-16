@@ -42,11 +42,11 @@ class RepeaterView(View):
                     'message': '转换成功',
                     'severity': 'success',
                 }
-        except:
+        except Exception as e:
             ret = {
                 'data': 'Error',
                 'output_str': '',
-                'message': '接口 catch 到未知错误',
+                'message': '接口 catch 到未知错误: ' + str(e),
                 'severity': 'warning',
             }
         return JsonResponse(ret, safe=False)

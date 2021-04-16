@@ -6,7 +6,7 @@ import { Grid, Paper } from '@material-ui/core';
 // import { dataDetailsApi } from '../../../apis/DataMonitorApi';
 import { Button, TextField } from '@material-ui/core';
 import axios from 'axios';
-import SimpleSnackbar from '../AddArticle/SimpleSnackbar';
+import SimpleSnackbar from './SimpleSnackbar';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const SquarePaper = (props) => <Paper square {...props} />;
@@ -64,7 +64,7 @@ const Beijinghua = observer(() => {
   };
 
   return (
-    <Grid>
+    <Grid container direction="row" spacing={5}>
       <Grid item>
         <form onSubmit={submit}>
           <TextField
@@ -93,18 +93,31 @@ const Beijinghua = observer(() => {
           </Grid>
         </form>
       </Grid>
-
-      {outputStr ? (
-        <Grid>
-          <br />
-          <div>{outputStr}</div>
-          <CopyToClipboard text={outputStr} onCopy={() => setCopied(true)}>
-            <button>Copy to clipboard with button</button>
-          </CopyToClipboard>
-        </Grid>
-      ) : (
-        <div></div>
-      )}
+      <Grid item>
+        {outputStr ? (
+          <Grid>
+            <br />
+            <div>{outputStr}</div>
+            <br />
+            <CopyToClipboard text={outputStr} onCopy={() => setCopied(true)}>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                onClick={() => {
+                  setSnackBarOpen(true);
+                  setWarningMessage('复制成功');
+                  setSeverity('success');
+                }}
+              >
+                复制到剪切板
+              </Button>
+            </CopyToClipboard>
+          </Grid>
+        ) : (
+          <div></div>
+        )}
+      </Grid>
       <SimpleSnackbar
         snackBarOpen={snackBarOpen}
         warningMessage={warningMessage}
