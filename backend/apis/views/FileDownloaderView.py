@@ -26,6 +26,7 @@ class FileDownloaderView(View):
     def get(self, request):
         filename = request.GET.get('filename', '')
         if filename == '':
+            f = None
             data = {
                 'status_code': 404,
                 'warningMessage': '文件名为空',

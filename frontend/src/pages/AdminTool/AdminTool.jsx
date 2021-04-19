@@ -20,6 +20,7 @@ import Repeater from './Repeater/Repeater';
 import SocialPractice from './SocialPractice/SocialPractice';
 import Blog from './Blog/Blog';
 import ImageDisplayer from './ImageDisplayer/ImageDisplayer';
+import EAS from './EAS/EAS';
 
 const drawerWidth = 240;
 
@@ -115,6 +116,7 @@ const Admin = observer(() => {
             {[
               { text: '社会实践', key: 'shsj' },
               { text: '个人博客', key: 'blog' },
+              { text: '员工考勤管理系统', key: 'eas' },
             ].map((obj, index) => (
               <ListItem button key={obj.key} value={obj.key} onClick={handleRowClick}>
                 <ListItemText primary={obj.text} />
@@ -132,6 +134,7 @@ const Admin = observer(() => {
           {appId === 'image' && <ImageDisplayer />}
           {appId === 'shsj' && <SocialPractice />}
           {appId === 'blog' && <Blog />}
+          {appId === 'eas' && <EAS />}
         </Typography>
       </main>
     </div>

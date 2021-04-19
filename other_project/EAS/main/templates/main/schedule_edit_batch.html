@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>schedule_edit_batch</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link href="static/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet" />
+  <link href="static/data/styles.css" type="text/css" rel="stylesheet" />
+  <link href="static/files/schedule_edit_batch/styles.css" type="text/css" rel="stylesheet" />
+  <script src="static/resources/scripts/jquery-3.2.1.min.js"></script>
+  <script src="static/resources/scripts/axure/axQuery.js"></script>
+  <script src="static/resources/scripts/axure/globals.js"></script>
+  <script src="static/resources/scripts/axutils.js"></script>
+  <script src="static/resources/scripts/axure/annotation.js"></script>
+  <script src="static/resources/scripts/axure/axQuery.std.js"></script>
+  <script src="static/resources/scripts/axure/doc.js"></script>
+  <script src="static/resources/scripts/messagecenter.js"></script>
+  <script src="static/resources/scripts/axure/events.js"></script>
+  <script src="static/resources/scripts/axure/recording.js"></script>
+  <script src="static/resources/scripts/axure/action.js"></script>
+  <script src="static/resources/scripts/axure/expr.js"></script>
+  <script src="static/resources/scripts/axure/geometry.js"></script>
+  <script src="static/resources/scripts/axure/flyout.js"></script>
+  <script src="static/resources/scripts/axure/model.js"></script>
+  <script src="static/resources/scripts/axure/repeater.js"></script>
+  <script src="static/resources/scripts/axure/sto.js"></script>
+  <script src="static/resources/scripts/axure/utils.temp.js"></script>
+  <script src="static/resources/scripts/axure/variables.js"></script>
+  <script src="static/resources/scripts/axure/drag.js"></script>
+  <script src="static/resources/scripts/axure/move.js"></script>
+  <script src="static/resources/scripts/axure/visibility.js"></script>
+  <script src="static/resources/scripts/axure/style.js"></script>
+  <script src="static/resources/scripts/axure/adaptive.js"></script>
+  <script src="static/resources/scripts/axure/tree.js"></script>
+  <script src="static/resources/scripts/axure/init.temp.js"></script>
+  <script src="static/resources/scripts/axure/legacy.js"></script>
+  <script src="static/resources/scripts/axure/viewer.js"></script>
+  <script src="static/resources/scripts/axure/math.js"></script>
+  <script src="static/resources/scripts/axure/jquery.nicescroll.min.js"></script>
+  <script src="static/data/document.js"></script>
+  <script src="static/files/schedule_edit_batch/data.js"></script>
+  <script type="text/javascript">
+    $axure.utils.getTransparentGifPath = function () { return 'resources/images/transparent.gif'; };
+    $axure.utils.getOtherPath = function () { return 'resources/Other.html'; };
+    $axure.utils.getReloadPath = function () { return 'resources/reload.html'; };
+  </script>
+  <style>
+    input {
+      display: inline;
+      border: 0px;
+      background-color: #3BB19C;
+      color: white;
+    }
+
+    a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="base" class="">
+
+    <!-- 编辑-排班管理 (组合) -->
+    <div id="u0" class="ax_default" data-label="编辑-排班管理" data-left="0" data-top="0" data-width="1341" data-height="721">
+
+      <!-- Unnamed (矩形) -->
+      <div id="u1" class="ax_default box_1">
+        <div id="u1_div" class=""></div>
+        <div id="u1_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u2" class="ax_default box_1">
+        <img id="u2_img" class="img " src="static/images/schedule_edit_batch/u2.svg" />
+        <div id="u2_text" class="text ">
+          <p><span style="text-decoration:none;">工作时间模式</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u3" class="ax_default label">
+        <div id="u3_div" class=""></div>
+        <div id="u3_text" class="text ">
+          <p><span style="text-decoration:none;">批量设置</span></p>
+          <p><span style="text-decoration:none;"><br></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u5" class="ax_default box_1">
+        <img id="u5_img" class="img " src="static/images/schedule_edit_batch/u2.svg" />
+        <div id="u5_text" class="text ">
+          <p><span style="text-decoration:none;">工作时间</span></p>
+        </div>
+      </div>
+
+
+      <form action="/dealwith_schedule_edit_batch" method="post">
+        <!-- Unnamed (下拉列表) -->
+        <div id="u6" class="ax_default droplist">
+          <div id="u6_div" class=""></div>
+          <select id="u6_input" name="s_kind" class="u6_input">
+            {% for sche in sches %}
+            <option class="u6_input_option" value="{{ sche.0 }}">{{ sche.1 }}</option>
+            {% endfor %}
+            <option class="u6_input_option" value="-1" selected='true'>其他</option>
+
+          </select>
+        </div>
+
+        <!-- Unnamed (文本框) -->
+        <div id="u7" class="ax_default text_field">
+          <div id="u7_div" class=""></div>
+          <input id="u7_input" name="work_begin" type="text" value="9:00" class="u7_input" />
+        </div>
+
+        <!-- Unnamed (文本框) -->
+        <div id="u8" class="ax_default text_field">
+          <div id="u8_div" class=""></div>
+          <input id="u8_input" name="work_end" type="text" value="17:00" class="u8_input" />
+        </div>
+
+        {% for eid in eids %}
+        <input name="eid{{forloop.counter0}}" value="{{ eid }}" hidden='true'>
+        {% endfor %}
+
+        <!-- Unnamed (矩形) -->
+        <div id="u4" class="ax_default primary_button">
+          <div id="u4_div" class=""></div>
+          <div id="u4_text" class="text ">
+            <p><span style="text-decoration:none;">
+                <input type="submit" value="保存">
+              </span></p>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9" class="ax_default primary_button">
+        <div id="u9_div" class=""></div>
+        <div id="u9_text" class="text ">
+          <p><span style="text-decoration:none;">
+              <a href="schedule_manage.html">取消</a>
+            </span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="static/resources/scripts/axure/ios.js"></script>
+</body>
+
+<script type="text/javascript">
+  document.getElementById("u6_input").onchange = function () {
+    var sel1 = document.getElementById('u6_input');
+    var index = sel1.selectedIndex;
+    var value = sel1.options[index].value;
+    if (value == -1) {
+      document.getElementById("u5").style.display = 'block';
+      document.getElementById("u7").style.display = 'block';
+      document.getElementById("u8").style.display = 'block';
+    }
+    else {
+      document.getElementById("u5").style.display = 'none';
+      document.getElementById("u7").style.display = 'none';
+      document.getElementById("u8").style.display = 'none';
+    }
+  }
+</script>
+
+</html>

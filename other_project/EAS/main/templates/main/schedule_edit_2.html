@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>schedule_edit_2</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="static/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="static/data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="static/files/schedule_edit_2/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="static/resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="static/resources/scripts/axure/axQuery.js"></script>
+    <script src="static/resources/scripts/axure/globals.js"></script>
+    <script src="static/resources/scripts/axutils.js"></script>
+    <script src="static/resources/scripts/axure/annotation.js"></script>
+    <script src="static/resources/scripts/axure/axQuery.std.js"></script>
+    <script src="static/resources/scripts/axure/doc.js"></script>
+    <script src="static/resources/scripts/messagecenter.js"></script>
+    <script src="static/resources/scripts/axure/events.js"></script>
+    <script src="static/resources/scripts/axure/recording.js"></script>
+    <script src="static/resources/scripts/axure/action.js"></script>
+    <script src="static/resources/scripts/axure/expr.js"></script>
+    <script src="static/resources/scripts/axure/geometry.js"></script>
+    <script src="static/resources/scripts/axure/flyout.js"></script>
+    <script src="static/resources/scripts/axure/model.js"></script>
+    <script src="static/resources/scripts/axure/repeater.js"></script>
+    <script src="static/resources/scripts/axure/sto.js"></script>
+    <script src="static/resources/scripts/axure/utils.temp.js"></script>
+    <script src="static/resources/scripts/axure/variables.js"></script>
+    <script src="static/resources/scripts/axure/drag.js"></script>
+    <script src="static/resources/scripts/axure/move.js"></script>
+    <script src="static/resources/scripts/axure/visibility.js"></script>
+    <script src="static/resources/scripts/axure/style.js"></script>
+    <script src="static/resources/scripts/axure/adaptive.js"></script>
+    <script src="static/resources/scripts/axure/tree.js"></script>
+    <script src="static/resources/scripts/axure/init.temp.js"></script>
+    <script src="static/resources/scripts/axure/legacy.js"></script>
+    <script src="static/resources/scripts/axure/viewer.js"></script>
+    <script src="static/resources/scripts/axure/math.js"></script>
+    <script src="static/resources/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="static/data/document.js"></script>
+    <script src="static/files/schedule_edit_2/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+    <style type="text/css">
+    button{
+      display: inline;
+      background-color: #3BB19C;
+      border: 0px;
+      color: white;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- 调整时间 (矩形) -->
+      <div id="u484" class="ax_default box_1" data-label="调整时间">
+        <div id="u484_div" class=""></div>
+        <div id="u484_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u485" class="ax_default box_1">
+        <div id="u485_div" class=""></div>
+        <div id="u485_text" class="text ">
+          <p><span style="text-decoration:none;">&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 起始时间：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u486" class="ax_default box_1">
+        <div id="u486_div" class=""></div>
+        <div id="u486_text" class="text ">
+          <p><span style="text-decoration:none;">&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 终止时间：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u487" class="ax_default primary_button">
+        <div id="u487_div" class=""></div>
+        <div id="u487_text" class="text ">
+          <button onclick="change_temp('/sche_change_temp')">确认</button>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <div id="u488" class="ax_default text_field">
+        <div id="u488_div" class=""></div>
+        <input id="u488_input" type="date" value="" class="u488_input"/>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <div id="u489" class="ax_default text_field">
+        <div id="u489_div" class=""></div>
+        <input id="u489_input" type="date" value="" class="u489_input"/>
+      </div>
+    </div>
+    <script src="static/resources/scripts/axure/ios.js"></script>
+  </body>
+  <script type="text/javascript">
+    function change_temp(URL){
+      var query = window.location.search.substring(1);
+      var vars = query.split("&");
+
+      var temp = document.createElement('form');
+      temp.action = URL;
+      temp.method = 'post';
+      temp.style.display = 'none';
+
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        var opt = document.createElement('textarea');
+        opt.name = pair[0];
+        if (i == 2 ||  i == 3){
+          opt.value = pair[1].replace('%3A', ':')
+        }
+        else 
+          opt.value = pair[1];
+        temp.appendChild(opt);
+      }
+
+      var dur_begin = document.createElement('textarea');
+      dur_begin.name = 'duration_begin';
+      dur_begin.value = document.getElementById('u488_input').value;
+      temp.appendChild(dur_begin);
+
+      var dur_end = document.createElement('textarea');
+      dur_end.name = 'duration_end';
+      dur_end.value = document.getElementById('u489_input').value;
+      temp.appendChild(dur_end);
+
+      document.body.appendChild(temp);
+      temp.submit();
+    }
+  </script>
+</html>

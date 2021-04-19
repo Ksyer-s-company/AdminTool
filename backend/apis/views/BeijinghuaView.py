@@ -51,3 +51,6 @@ class BeijinghuaView(View):
                 'severity': 'warning',
             }
         return JsonResponse(ret, safe=False, json_dumps_params={'ensure_ascii':False})
+    
+    def get(self, request):
+        return JsonResponse({'msg': 'get'}, safe=False)

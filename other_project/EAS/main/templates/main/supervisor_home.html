@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>supervisor_home</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="static/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="static/data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="static/files/supervisor_home/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="static/resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="static/resources/scripts/axure/axQuery.js"></script>
+    <script src="static/resources/scripts/axure/globals.js"></script>
+    <script src="static/resources/scripts/axutils.js"></script>
+    <script src="static/resources/scripts/axure/annotation.js"></script>
+    <script src="static/resources/scripts/axure/axQuery.std.js"></script>
+    <script src="static/resources/scripts/axure/doc.js"></script>
+    <script src="static/resources/scripts/messagecenter.js"></script>
+    <script src="static/resources/scripts/axure/events.js"></script>
+    <script src="static/resources/scripts/axure/recording.js"></script>
+    <script src="static/resources/scripts/axure/action.js"></script>
+    <script src="static/resources/scripts/axure/expr.js"></script>
+    <script src="static/resources/scripts/axure/geometry.js"></script>
+    <script src="static/resources/scripts/axure/flyout.js"></script>
+    <script src="static/resources/scripts/axure/model.js"></script>
+    <script src="static/resources/scripts/axure/repeater.js"></script>
+    <script src="static/resources/scripts/axure/sto.js"></script>
+    <script src="static/resources/scripts/axure/utils.temp.js"></script>
+    <script src="static/resources/scripts/axure/variables.js"></script>
+    <script src="static/resources/scripts/axure/drag.js"></script>
+    <script src="static/resources/scripts/axure/move.js"></script>
+    <script src="static/resources/scripts/axure/visibility.js"></script>
+    <script src="static/resources/scripts/axure/style.js"></script>
+    <script src="static/resources/scripts/axure/adaptive.js"></script>
+    <script src="static/resources/scripts/axure/tree.js"></script>
+    <script src="static/resources/scripts/axure/init.temp.js"></script>
+    <script src="static/resources/scripts/axure/legacy.js"></script>
+    <script src="static/resources/scripts/axure/viewer.js"></script>
+    <script src="static/resources/scripts/axure/math.js"></script>
+    <script src="static/resources/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="static/data/document.js"></script>
+    <script src="static/files/supervisor_home/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+        {% load notifications_tags %}
+        {% notifications_unread as unread_count %}
+        
+      <!-- Unnamed (矩形) -->
+      <div id="u30" class="ax_default box_1">
+        <div id="u30_div" class=""></div>
+        <div id="u30_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u31" class="ax_default box_1">
+        <div id="u31_div" class=""></div>
+        <div id="u31_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u32" class="ax_default box_1">
+        <div id="u32_div" class=""></div>
+        <div id="u32_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u33" class="ax_default box_1">
+        <img id="u33_img" class="img " src="static/images/emp_home/u3.svg"/>
+        <div id="u33_text" class="text ">
+          <p><span style="text-decoration:none;">姓名:</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <div id="u34" class="ax_default text_field">
+        <div id="u34_div" class=""></div>
+        <input id="u34_input" type="text" value="{{username}}" class="u34_input" readonly/>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u35" class="ax_default box_1">
+        <img id="u35_img" class="img " src="static/images/emp_home/u3.svg"/>
+        <div id="u35_text" class="text ">
+          <p><span style="text-decoration:none;">工号:</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <div id="u36" class="ax_default text_field">
+        <div id="u36_div" class=""></div>
+        <input id="u36_input" type="text" value="{{emp_id}}" class="u36_input" readonly/>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u37" class="ax_default box_1">
+        <img id="u37_img" class="img " src="static/images/emp_home/u3.svg"/>
+        <div id="u37_text" class="text ">
+          <p><span style="text-decoration:none;">职务:</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <div id="u38" class="ax_default text_field">
+        <div id="u38_div" class=""></div>
+        <input id="u38_input" type="text" value="部门主管" class="u38_input" readonly/>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u39" class="ax_default box_1">
+        <img id="u39_img" class="img " src="static/images/emp_home/u3.svg"/>
+        <div id="u39_text" class="text ">
+          <p><span style="text-decoration:none;">部门:</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <div id="u40" class="ax_default text_field">
+        <div id="u40_div" class=""></div>
+        <input id="u40_input" type="text" value="{{depart}}" class="u40_input" readonly/>
+      </div>
+
+      <a href="clock_in.html">
+      <!-- Unnamed (矩形) -->
+      <div id="u41" class="ax_default button">
+        <div id="u41_div" class=""></div>
+        <div id="u41_text" class="text ">
+          <p><span style="text-decoration:none;">上班打卡</span></p>
+        </div>
+      </div>
+    </a>
+
+    <a href="ring_out.html">
+      <!-- Unnamed (矩形) -->
+      <div id="u42" class="ax_default button">
+        <div id="u42_div" class=""></div>
+        <div id="u42_text" class="text ">
+          <p><span style="text-decoration:none;">下班打卡</span></p>
+        </div>
+      </div>
+    </a>
+
+      <!-- Unnamed (圆形) -->
+      <div id="u43" class="ax_default ellipse">
+        <img id="u43_img" class="img " src="static/images/emp_home/u14.svg"/>
+        <div id="u43_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <a href="schedule_manage.html">
+      <div id="u44" class="ax_default button">
+        <div id="u44_div" class=""></div>
+        <div id="u44_text" class="text ">
+          <p><span style="text-decoration:none;">排班管理</span></p>
+        </div>
+      </div>
+      </a>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u45" class="ax_default _文本段落">
+        <div id="u45_div" class=""></div>
+        <div id="u45_text" class="text ">
+          <p><span style="text-decoration:none;">欢迎登陆考勤系统</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (图片 ) -->
+      <div id="u46" class="ax_default image">
+        <img id="u46_img" class="img " src="static/images/emp_home/u17.jpg"/>
+        <div id="u46_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div id="u47" class="ax_default icon">
+        <img id="u47_img" class="img " src="static/images/emp_home/u18.svg"/>
+        <div id="u47_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div id="u48" class="ax_default icon">
+        <img id="u48_img" class="img " src="static/images/emp_home/u18.svg"/>
+        <div id="u48_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div id="u49" class="ax_default icon">
+        <img id="u49_img" class="img " src="static/images/emp_home/u18.svg"/>
+        <div id="u49_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u50" class="ax_default _文本段落">
+        <div id="u50_div" class=""></div>
+        <div id="u50_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u51" class="ax_default _文本段落">
+        <div id="u51_div" class=""></div>
+        <div id="u51_text" class="text ">
+          <p><span style="text-decoration:none;">&nbsp;&nbsp; &nbsp;&nbsp; 北京科技大学于1952年由天津大学（原北洋大学）、清华大学等6所国内著名大学的矿冶系科组建而成，现已发展成为以工为主，工、理、管、文、经、法等多学科协调发展的教育部直属全国重点大学，是全国首批正式成立研究生院的高等学校之一。1997年5月，学校首批进入国家“211工程”建设高校行列。2006年，学校成为首批“985工程”优势学科创新平台建设高校。2014年，学校牵头的，以北京科技大学、东北大学为核心高校的“钢铁共性技术协同创新中心”成功入选国家“2011计划”。2017年，学校入选国家“双一流”建设高校。2018年，学校获批国防科工局、教育部共建高校。</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u52" class="ax_default link_button">
+        <div id="u52_div" class=""></div>
+        <div id="u52_text" class="text ">
+          <p><span style="text-decoration:none;">点击进入学校官网</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (向右箭头按钮) -->
+      <div id="u53" class="ax_default _形状">
+        <img id="u53_img" class="img " src="static/images/emp_home/u25.svg"/>
+        <div id="u53_text" class="text ">
+          <p><span style="text-decoration:none;">功能入口</span></p>
+        </div>
+      </div>
+
+      <a href="attendance_summary_supervisor.html">
+      <!-- Unnamed (矩形) -->
+      <div id="u54" class="ax_default button">
+        <div id="u54_div" class=""></div>
+        <div id="u54_text" class="text ">
+          <p><span style="text-decoration:none;">考勤统计</span></p>
+        </div>
+      </div>
+      </a>
+
+
+      <a href="supervisor_approve.html">
+      <!-- Unnamed (矩形) -->
+      <div id="u55" class="ax_default button">
+        <div id="u55_div" class=""></div>
+        <div id="u55_text" class="text ">
+          <p><span style="text-decoration:none;">申请审批</span></p>
+        </div>
+      </div>
+    </a>
+
+      <!-- Unnamed (形状) -->
+      <div id="u56" class="ax_default icon">
+        <img id="u56_img" class="img " src="static/images/emp_home/u18.svg"/>
+        <div id="u56_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div id="u57" class="ax_default icon">
+        <img id="u57_img" class="img " src="static/images/emp_home/u18.svg"/>
+        <div id="u57_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <a href="schedule_creat.html">
+          <!-- Unnamed (矩形) -->
+      <div id="u58" class="ax_default button">
+        <div id="u58_div" class=""></div>
+        <div id="u58_text" class="text ">
+          <p><span style="text-decoration:none;">创建工作班次模式</span></p>
+        </div>
+      </div>
+    </a>
+
+      <!-- Unnamed (形状) -->
+      <div id="u59" class="ax_default icon">
+        <img id="u59_img" class="img " src="static/images/emp_home/u18.svg"/>
+        <div id="u59_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <a href="message.html">
+        <!-- Unnamed (形状) -->
+        <div id="u60" class="ax_default icon">
+          <img id="u60_img" class="img " src="static/images/emp_home/u26.svg"/>
+          <div id="u60_text" class="text " style="display:none; visibility: hidden">
+              <p></p>
+            </div>
+          </div>
+          
+          <!-- Unnamed (圆形) -->
+          {% if unread_count > 0 %}
+      <div id="u61" class="ax_default ellipse">
+        <img id="u61_img" class="img " src="static/images/emp_home/u27.svg"/>
+        <div id="u61_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+      {% endif %}
+    </a>
+
+      <!-- Unnamed (矩形) -->
+      <a href="my_account.html">
+      <div id="u62" class="ax_default button">
+        <div id="u62_div" class=""></div>
+        <div id="u62_text" class="text ">
+          <p><span style="text-decoration:none;">个人中心</span></p>
+        </div>
+      </div>
+    </a>
+
+      <!-- Unnamed (形状) -->
+      <div id="u63" class="ax_default icon">
+        <img id="u63_img" class="img " src="static/images/emp_home/u18.svg"/>
+        <div id="u63_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <form action=''>
+      <div id="u64" class="ax_default icon">
+        <input id="u64_img" type="image" src="static/images/manager_home/u26.svg"/>
+        <div id="u64_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+      </form>
+    </div>
+    <script src="static/resources/scripts/axure/ios.js"></script>
+  </body>
+
+  <script>
+    $(document).ready(function () {
+        $("#u64_img").click(function () {
+          $.ajax({
+            type: "POST",
+            url: "/logout",
+            beforeSend: function (xhr, setting) {
+              xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            },
+            dataType: "json",
+            data: {
+            },
+    
+            success: function (displayList) {
+              window.location.href('temp_login.html');
+            },
+    
+            error: function () {
+            },
+          })
+        })
+      });
+    
+    </script>
+
+
+
+</html>
