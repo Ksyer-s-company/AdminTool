@@ -33,6 +33,14 @@ export default function ImageDisplayer() {
 
   useEffect(() => {
     setInitStatus(false);
+    let initUrl = new URL('/api/upload_image', serverConfig.baseUrl);
+    axios({
+      method: 'GET',
+      url: initUrl,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
   }, []);
 
   const handleSelectFile = (e) => {

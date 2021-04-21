@@ -34,6 +34,17 @@ export default function FormUpload() {
     setSnackBarOpen(false);
   };
 
+  useEffect(() => {
+    let initUrl = new URL('/api/upload_file', serverConfig.baseUrl);
+    axios({
+      method: 'GET',
+      url: initUrl,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }, []);
+
   const submit = (e) => {
     e.preventDefault();
 

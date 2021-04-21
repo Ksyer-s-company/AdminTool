@@ -25,6 +25,17 @@ const Beijinghua = observer(() => {
     setSnackBarOpen(false);
   };
 
+  useEffect(() => {
+    let initUrl = new URL('/api/beijinghua', serverConfig.baseUrl);
+    axios({
+      method: 'GET',
+      url: initUrl,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }, []);
+
   const submit = (e) => {
     e.preventDefault();
 
