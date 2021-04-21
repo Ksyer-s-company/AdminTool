@@ -17,6 +17,7 @@ import { history } from '../../App';
 import FileUpload from './FileUpload/FileUpload';
 import Beijinghua from './Beijinghua/Beijinghua';
 import Repeater from './Repeater/Repeater';
+import AddCode from './AddCode/AddCode';
 import SocialPractice from './SocialPractice/SocialPractice';
 import Blog from './Blog/Blog';
 import ImageDisplayer from './ImageDisplayer/ImageDisplayer';
@@ -105,6 +106,7 @@ const Admin = observer(() => {
               { text: '复读机', key: 'repeater' },
               { text: '导入文件', key: 'file' },
               { text: '图片显示', key: 'image' },
+              { text: '代码暂存', key: 'code' },
             ].map((obj, index) => (
               <ListItem button key={obj.key} value={obj.key} onClick={handleRowClick}>
                 <ListItemText primary={obj.text} />
@@ -132,6 +134,8 @@ const Admin = observer(() => {
           {appId === 'repeater' && <Repeater />}
           {appId === 'file' && <FileUpload />}
           {appId === 'image' && <ImageDisplayer />}
+          {appId === 'code' && <AddCode />}
+
           {appId === 'shsj' && <SocialPractice />}
           {appId === 'blog' && <Blog />}
           {appId === 'eas' && <EAS />}
