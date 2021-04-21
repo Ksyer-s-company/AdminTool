@@ -34,19 +34,6 @@ export default function FormUpload() {
     setSnackBarOpen(false);
   };
 
-  useEffect(() => {
-    let url = new URL('/api/upload_file', serverConfig.baseUrl);
-    axios
-      .get(url)
-      .then((response) => response.data)
-      .then((data) => {
-        setFileNames(data);
-      })
-      .catch(function (error) {
-        console.log('error: ', error);
-      });
-  }, []);
-
   const submit = (e) => {
     e.preventDefault();
 
@@ -144,7 +131,7 @@ export default function FormUpload() {
             <label htmlFor="file">
               <input
                 name="file"
-                accept=".xlsx,.xls"
+                accept="*"
                 className={classes.input}
                 id="file"
                 multiple

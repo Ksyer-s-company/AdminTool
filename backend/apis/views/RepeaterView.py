@@ -49,4 +49,4 @@ class RepeaterView(View):
                 'message': '接口 catch 到未知错误: ' + str(e),
                 'severity': 'warning',
             }
-        return JsonResponse(ret, safe=False)
+        return JsonResponse(ret, safe=False, json_dumps_params={'ensure_ascii':False})

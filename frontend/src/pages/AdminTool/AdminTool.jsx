@@ -19,6 +19,7 @@ import Beijinghua from './Beijinghua/Beijinghua';
 import Repeater from './Repeater/Repeater';
 import SocialPractice from './SocialPractice/SocialPractice';
 import Blog from './Blog/Blog';
+import ImageDisplayer from './ImageDisplayer/ImageDisplayer';
 
 const drawerWidth = 240;
 
@@ -102,6 +103,7 @@ const Admin = observer(() => {
               { text: '北京话生成器', key: 'beijinghua' },
               { text: '复读机', key: 'repeater' },
               { text: '导入文件', key: 'file' },
+              { text: '图片显示', key: 'image' },
             ].map((obj, index) => (
               <ListItem button key={obj.key} value={obj.key} onClick={handleRowClick}>
                 <ListItemText primary={obj.text} />
@@ -127,6 +129,7 @@ const Admin = observer(() => {
           {appId === 'beijinghua' && <Beijinghua />}
           {appId === 'repeater' && <Repeater />}
           {appId === 'file' && <FileUpload />}
+          {appId === 'image' && <ImageDisplayer />}
           {appId === 'shsj' && <SocialPractice />}
           {appId === 'blog' && <Blog />}
         </Typography>

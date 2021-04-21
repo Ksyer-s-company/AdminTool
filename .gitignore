@@ -145,3 +145,7 @@ frontend/yarn.lock
 frontend.tar.gz
 
 frontend/package-lock.json
+backend/apis/views/__init__.py
+
+files
+images
