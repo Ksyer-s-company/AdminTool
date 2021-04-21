@@ -4,7 +4,7 @@ import { serverConfig } from '../../../config';
 import { Grid, Paper } from '@material-ui/core';
 import { Button, TextField } from '@material-ui/core';
 import axios from 'axios';
-import SimpleSnackbar from './SimpleSnackbar';
+import SimpleSnackbar from '../SimpleSnackbar';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Radio from '@material-ui/core/Radio';

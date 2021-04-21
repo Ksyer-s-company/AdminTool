@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import SimpleSnackbar from './SimpleSnackbar';
+import SimpleSnackbar from '../SimpleSnackbar';
 import axios from 'axios';
 import FileTable from './FileTable';
 
