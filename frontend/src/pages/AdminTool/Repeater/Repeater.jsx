@@ -27,7 +27,6 @@ const Repeater = observer(() => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    setInitStatus(false);
     let initUrl = new URL('/api/repeater', serverConfig.baseUrl);
     axios({
       method: 'GET',
