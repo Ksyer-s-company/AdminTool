@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function ImageDisplayer() {
+export default function ImageTool() {
   const classes = useStyles();
   const [warningMessage, setWarningMessage] = useState('init');
   const [severity, setSeverity] = useState('info');

@@ -14,13 +14,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import { history } from '../../App';
-import FileUpload from './FileUpload/FileUpload';
+import FileTool from './FileTool/FileTool';
 import Beijinghua from './Beijinghua/Beijinghua';
 import Repeater from './Repeater/Repeater';
-import AddCode from './AddCode/AddCode';
+import CodeTool from './CodeTool/CodeTool';
 import SocialPractice from './SocialPractice/SocialPractice';
 import Blog from './Blog/Blog';
-import ImageDisplayer from './ImageDisplayer/ImageDisplayer';
+import ImageTool from './ImageTool/ImageTool';
 import EAS from './EAS/EAS';
 
 const drawerWidth = 240;
@@ -132,9 +132,9 @@ const Admin = observer(() => {
         <Typography paragraph>
           {appId === 'beijinghua' && <Beijinghua />}
           {appId === 'repeater' && <Repeater />}
-          {appId === 'file' && <FileUpload />}
-          {appId === 'image' && <ImageDisplayer />}
-          {appId === 'code' && <AddCode />}
+          {appId === 'file' && <FileTool />}
+          {appId === 'image' && <ImageTool />}
+          {appId === 'code' && <CodeTool />}
 
           {appId === 'shsj' && <SocialPractice />}
           {appId === 'blog' && <Blog />}
