@@ -6,7 +6,7 @@ import base64
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/../../'
 
-class ImageDisplayerView(View):
+class ImageDownloaderView(View):
     def __init__(self):
         super().__init__()
     

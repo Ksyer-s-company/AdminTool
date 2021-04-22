@@ -6,7 +6,7 @@ import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/../../'
 
-class CodeDisplayerView(View):
+class CodeDownloaderView(View):
     def __init__(self):
         super().__init__()
     

@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import axios from 'axios';
+import ImageTable from './ImageTable';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function ImageDisplayer() {
+export default function ImageTool() {
   const classes = useStyles();
   const [warningMessage, setWarningMessage] = useState('init');
   const [severity, setSeverity] = useState('info');
@@ -26,22 +27,6 @@ export default function ImageDisplayer() {
   const [fileName, setFileName] = useState('');
   const [imageBase64, setImageBase64] = useState();
   const [initStatus, setInitStatus] = useState(false);
-
-  const handleSnackBarClose = () => {
-    setSnackBarOpen(false);
-  };
-
-  useEffect(() => {
-    setInitStatus(false);
-    let initUrl = new URL('/api/upload_image', serverConfig.baseUrl);
-    axios({
-      method: 'GET',
-      url: initUrl,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  }, []);
 
   const handleSelectFile = (e) => {
     var filePath = e.target.value.split('\\');
@@ -85,33 +70,38 @@ export default function ImageDisplayer() {
       <Grid>
         <img src={imageBase64} />
       </Grid>
-      <Grid>
-        <form onSubmit={imageUpload}>
-          <Grid spaceing={2} container direction="row" justify="flex-start" alignItems="flex-start">
-            <Grid item xs={3}>
-              <label htmlFor="file">
-                <input
-                  name="file"
-                  accept="image/*"
-                  className={classes.input}
-                  id="file"
-                  multiple
-                  type="file"
-                  onChange={handleSelectFile}
-                />
-                <Button color="primary" variant="contained" component="span">
-                  选择图片
+      <Grid container direction="row" justify="space-between" alignItems="flex-start">
+        <Grid item>
+          <form onSubmit={imageUpload}>
+            <Grid container direction="row" justify="flex-start" alignItems="flex-start">
+              <Grid item>
+                <label htmlFor="file">
+                  <input
+                    name="file"
+                    accept="image/*"
+                    className={classes.input}
+                    id="file"
+                    multiple
+                    type="file"
+                    onChange={handleSelectFile}
+                  />
+                  <Button color="primary" variant="contained" component="span">
+                    选择图片
+                  </Button>
+                </label>
+                {fileName ? fileName : '        '}
+              </Grid>
+              <Grid item xs={2}>
+                <Button variant="contained" color="primary" type="submit" id="btnSave">
+                  提交
                 </Button>
-              </label>
-              {fileName ? '    ' + fileName : ''}
+              </Grid>
             </Grid>
-            <Grid item xs={2}>
-              <Button variant="contained" color="primary" type="submit" id="btnSave">
-                提交
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
+          </form>
+        </Grid>
+        <Grid item>
+          <ImageTable />
+        </Grid>
       </Grid>
     </Grid>
   );

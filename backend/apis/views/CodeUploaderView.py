@@ -6,7 +6,7 @@ import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/../../'
 
-class CodeSaverView(View):
+class CodeUploaderView(View):
     def __init__(self):
         super().__init__()
     
@@ -22,6 +22,10 @@ class CodeSaverView(View):
         
         id = 0
         base_filename = BASE_DIR + 'codes/'
+
+        if not os.path.exists(base_filename):
+            os.system("mkdir {}".format(base_filename))
+
         M = -1
         for _, _, c in os.walk(base_filename):
             files = c

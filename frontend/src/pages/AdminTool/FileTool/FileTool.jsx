@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function FormUpload() {
+export default function FileTool() {
   const classes = useStyles();
   const [warningMessage, setWarningMessage] = useState('init');
   const [severity, setSeverity] = useState('info');
@@ -33,17 +33,6 @@ export default function FormUpload() {
   const handleSnackBarClose = () => {
     setSnackBarOpen(false);
   };
-
-  useEffect(() => {
-    let initUrl = new URL('/api/upload_file', serverConfig.baseUrl);
-    axios({
-      method: 'GET',
-      url: initUrl,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  }, []);
 
   const submit = (e) => {
     e.preventDefault();
