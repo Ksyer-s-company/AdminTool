@@ -1,4 +1,5 @@
-import React, { useEffect, useCallback, makeStyles, useState, Fragment } from 'react';
+import React, { useEffect, useCallback, useState, Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { observer } from 'mobx-react';
 import { serverConfig } from '../../../config';
 import { Grid, Paper } from '@material-ui/core';
@@ -12,10 +13,21 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import imgSe from '../Repeater/se.png';
+import imgTianPing from '../Repeater/tianping.png';
 
 const SquarePaper = (props) => <Paper square {...props} />;
 
 const Repeater = observer(() => {
+  const imgStyles = makeStyles((theme) => ({
+    logo: {
+      height: '1.5rem',
+      marginRight: theme.spacing(1),
+      marginTop: -8,
+    },
+  }));
+
+  const img_classes = imgStyles();
   const [inputStr, setInputStr] = useState('');
   const [emoji, setEmoji] = useState('selectWechat');
   const [outputStr, setOutputStr] = useState('');
@@ -109,14 +121,20 @@ const Repeater = observer(() => {
               <FormControl component="fieldset">
                 <FormLabel component="legend">表情</FormLabel>
                 <RadioGroup aria-label="emoji" name="emoji" value={emoji} onChange={handleChange}>
-                  <FormControlLabel value="selectWechat" control={<Radio />} label="微信" />
+                  <FormControlLabel value="selectWechat" control={<Radio />} label="微信">
+                    {' '}
+                  </FormControlLabel>
                   <FormControlLabel value="selectEmoji" control={<Radio />} label="😍" />
-                  <FormControlLabel value="selectWeiboSe" control={<Radio />} label="微博 [色]" />
+                  <FormControlLabel
+                    value="selectWeiboSe"
+                    control={<Radio />}
+                    label={<img src={imgSe} className={img_classes.logo} />}
+                  ></FormControlLabel>
                   <FormControlLabel
                     value="selectWeiboTianping"
                     control={<Radio />}
-                    label="微博 [舔屏]"
-                  />
+                    label={<img src={imgTianPing} className={img_classes.logo} />}
+                  ></FormControlLabel>
                 </RadioGroup>
               </FormControl>
             </Grid>

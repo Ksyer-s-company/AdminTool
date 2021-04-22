@@ -10,7 +10,7 @@ const IndexPage = () => (
       <title>Index Page</title>
     </Helmet>
     <Grid container direction="column">
-      <Link to="/admin-tool/article">后台管理工具</Link>
+      <Link to="/admin-tool/beijinghua">点击进入</Link>
     </Grid>
   </Layout>
 );

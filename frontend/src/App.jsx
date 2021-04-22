@@ -21,8 +21,8 @@ const App = observer(() => (
       <ThemeProvider theme={theme}>
         <StoreContext.Provider value={rootStore}>
           <Switch>
-            {/* <Route path="/" exact component={IndexPage} /> */}
-            <Route path="/" exact component={AdminTool} />
+            <Route path="/" exact component={IndexPage} />
+            {/* <Route path="/" exact component={AdminTool} /> */}
             <Route path="/admin-tool/:appId" component={AdminTool} />
             <Route>
               <Helmet>
