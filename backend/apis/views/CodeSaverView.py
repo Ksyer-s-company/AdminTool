@@ -22,6 +22,10 @@ class CodeSaverView(View):
         
         id = 0
         base_filename = BASE_DIR + 'codes/'
+
+        if not os.path.exists(base_filename):
+            os.system("mkdir {}".format(base_filename))
+
         M = -1
         for _, _, c in os.walk(base_filename):
             files = c
