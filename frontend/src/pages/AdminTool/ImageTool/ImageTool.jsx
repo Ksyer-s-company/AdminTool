@@ -99,9 +99,9 @@ export default function ImageTool() {
             </Grid>
           </form>
         </Grid>
-        <Grid item>
+        {/* <Grid item>
           <ImageTable />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Grid>
   );

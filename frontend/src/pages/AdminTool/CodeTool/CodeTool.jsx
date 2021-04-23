@@ -39,7 +39,7 @@ export default function CodeTool() {
         </ButtonGroup>
       </Grid>
 
-      {articleUrlFlag ? <UploadCode /> : <DisplayCode />}
+      {articleUrlFlag ? <UploadCode /> : <DownloadCode />}
     </Grid>
   );
 }

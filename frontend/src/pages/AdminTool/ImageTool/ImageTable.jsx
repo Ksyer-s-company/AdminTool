@@ -46,7 +46,7 @@ export default function ImageTable(props) {
   const [conceptData, setConceptData] = useState(initConceptData);
 
   useEffect(() => {
-    let url = new URL('/api/get_images', serverConfig.baseUrl);
+    let url = new URL('/api/download_image', serverConfig.baseUrl);
     axios
       .get(url)
       .then((response) => response.data)
