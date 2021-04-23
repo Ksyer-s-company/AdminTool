@@ -55,7 +55,7 @@ export default function UploadCode() {
       setSnackBarOpen(true);
     } else {
       if (articleUrlFlag) {
-        let postUrl = new URL('/api/code_saver', serverConfig.baseUrl);
+        let postUrl = new URL('/api/upload_code', serverConfig.baseUrl);
         let formData = new FormData();
         formData.append('code', code);
 

@@ -31,6 +31,7 @@ class FileUploaderView(View):
                 'status_code': '200',
                 'warningMessage': '上传成功',
                 'severity': 'Success',
+                'filename': str(my_file),
             }
         except Exception as e:
             data = {

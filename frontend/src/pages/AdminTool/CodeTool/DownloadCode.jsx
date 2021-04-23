@@ -56,7 +56,7 @@ export default function DownloadCode() {
       setLoading(false);
       setSnackBarOpen(true);
     } else {
-      let postUrl = new URL('/api/code_displayer', serverConfig.baseUrl);
+      let postUrl = new URL('/api/download_code', serverConfig.baseUrl);
       let formData = new FormData();
       formData.append('ID', ID);
 
