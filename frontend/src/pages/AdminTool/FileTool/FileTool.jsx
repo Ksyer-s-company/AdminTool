@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { render } from 'react-dom';
 import { serverConfig } from '../../../config';
 import Button from '@material-ui/core/Button';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import SimpleSnackbar from '../SimpleSnackbar';
@@ -22,28 +20,16 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function FormUpload() {
+export default function FileTool() {
   const classes = useStyles();
   const [warningMessage, setWarningMessage] = useState('init');
   const [severity, setSeverity] = useState('info');
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [fileName, setFileName] = useState('');
-  const [fileNames, setFileNames] = useState([]);
 
   const handleSnackBarClose = () => {
     setSnackBarOpen(false);
   };
-
-  useEffect(() => {
-    let initUrl = new URL('/api/upload_file', serverConfig.baseUrl);
-    axios({
-      method: 'GET',
-      url: initUrl,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  }, []);
 
   const submit = (e) => {
     e.preventDefault();
@@ -130,9 +116,30 @@ export default function FormUpload() {
     });
   };
 
+  const handleDelete = (e) => {
+    let formData = new FormData();
+    var filename = e;
+    formData.append('filename', filename);
+
+    let url = new URL('/api/delete_file', serverConfig.baseUrl);
+    axios({
+      method: 'POST',
+      url: url,
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then((e) => {
+      setWarningMessage(e.data.warningMessage);
+      setSeverity(e.data.severity);
+      setSnackBarOpen(true);
+      if (e.data.severity == 'success') location.reload();
+    });
+  };
+
   return (
     <Grid>
-      <FileTable handleDownload={handleDownload}></FileTable>
+      <FileTable handleDownload={handleDownload} handleDelete={handleDelete}></FileTable>
 
       <br />
 

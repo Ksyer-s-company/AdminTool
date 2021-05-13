@@ -40,13 +40,13 @@ const StyledTableRow = withStyles((theme: Theme) =>
 )(TableRow);
 //创建ParentComponent调用函数,通过axios拿到后台返回的数据
 
-export default function FileTable(props) {
+export default function ImageTable(props) {
   const { handleDownload } = props;
   const initConceptData = [];
   const [conceptData, setConceptData] = useState(initConceptData);
 
   useEffect(() => {
-    let url = new URL('/api/upload_file', serverConfig.baseUrl);
+    let url = new URL('/api/download_image', serverConfig.baseUrl);
     axios
       .get(url)
       .then((response) => response.data)

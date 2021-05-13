@@ -18,10 +18,7 @@ class FileDownloaderView(View):
                 'warningMessage': '文件名为空',
                 'severity': 'warning',
             }
-        
-        f = open(BASE_DIR + 'files/' + filename, 'rb')
-        print(f)
-        return FileResponse(f)
+        return JsonResponse({'msg': 'msg'})
   
     def get(self, request):
         filename = request.GET.get('filename', '')
@@ -33,5 +30,4 @@ class FileDownloaderView(View):
                 'severity': 'warning',
             }
         
-        f = open(BASE_DIR + 'files/' + filename, 'rb')
-        return FileResponse(f)
+        return JsonResponse({'msg': 'msg'})

@@ -5,13 +5,12 @@ import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/s
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { serverConfig } from '../../../config';
 import { Button } from '@material-ui/core';
+import FileDeleteDialog from './FileDeleteDialog';
 
 //根据material-ui,调用了表格样式
 const StyledTableCell = withStyles((theme: Theme) =>
@@ -40,18 +39,20 @@ const StyledTableRow = withStyles((theme: Theme) =>
 )(TableRow);
 //创建ParentComponent调用函数,通过axios拿到后台返回的数据
 
-export default function ImageTable(props) {
-  const { handleDownload } = props;
+export default function FileTable(props) {
+  const { handleDownload, handleDelete } = props;
   const initConceptData = [];
-  const [conceptData, setConceptData] = useState(initConceptData);
+  const [uploadConceptData, setUploadConceptData] = useState(initConceptData);
+  const [formDialogOpen, setFormDialogOpen] = useState(false);
+  const [filename, setFilename] = useState('');
 
   useEffect(() => {
-    let url = new URL('/api/get_images', serverConfig.baseUrl);
+    let url = new URL('/api/upload_file', serverConfig.baseUrl);
     axios
       .get(url)
       .then((response) => response.data)
       .then((data) => {
-        setConceptData(data);
+        setUploadConceptData(data);
       })
       .catch(function (error) {
         console.log('error: ', error);
@@ -71,10 +72,13 @@ export default function ImageTable(props) {
                 <StyledTableCell align="center">
                   下载 <span></span>
                 </StyledTableCell>
+                <StyledTableCell align="center">
+                  删除 <span></span>
+                </StyledTableCell>
               </StyledTableRow>
             </TableHead>
             <TableBody>
-              {Array.from(conceptData).map((user) => (
+              {Array.from(uploadConceptData).map((user) => (
                 <StyledTableRow>
                   <StyledTableCell align="center">{user}</StyledTableCell>
                   <StyledTableCell align="center">
@@ -88,12 +92,33 @@ export default function ImageTable(props) {
                       下载
                     </Button>
                   </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        setFilename(user);
+                        setFormDialogOpen(true);
+                      }}
+                    >
+                      删除
+                    </Button>
+                  </StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
           </Table>
         </Grid>
       </Grid>
+      {formDialogOpen ? (
+        <FileDeleteDialog
+          handleDelete={handleDelete}
+          filename={filename}
+          initFormDialogOpen={formDialogOpen}
+        />
+      ) : (
+        ''
+      )}
     </div>
   );
 }
