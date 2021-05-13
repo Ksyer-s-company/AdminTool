@@ -152,3 +152,4 @@ images
 backend/Apps/urls.py
 codes
 markdowns
+deploy.sh
