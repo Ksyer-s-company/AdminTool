@@ -41,7 +41,7 @@ const StyledTableRow = withStyles((theme: Theme) =>
 //创建ParentComponent调用函数,通过axios拿到后台返回的数据
 
 export default function ImageTable(props) {
-  const { handleDownload } = props;
+  const { handleDownload, handleDisplay } = props;
   const initConceptData = [];
   const [conceptData, setConceptData] = useState(initConceptData);
 
@@ -71,6 +71,9 @@ export default function ImageTable(props) {
                 <StyledTableCell align="center">
                   下载 <span></span>
                 </StyledTableCell>
+                <StyledTableCell align="center">
+                  查看 <span></span>
+                </StyledTableCell>
               </StyledTableRow>
             </TableHead>
             <TableBody>
@@ -86,6 +89,18 @@ export default function ImageTable(props) {
                       }}
                     >
                       下载
+                    </Button>
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        console.log(user);
+                        handleDisplay(user);
+                      }}
+                    >
+                      查看
                     </Button>
                   </StyledTableCell>
                 </StyledTableRow>
