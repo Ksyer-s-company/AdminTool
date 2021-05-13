@@ -18,8 +18,11 @@ class FileDownloaderView(View):
                 'warningMessage': '文件名为空',
                 'severity': 'warning',
             }
-        return JsonResponse({'msg': 'msg'})
-  
+            return JsonResponse({'msg': 'msg'})
+        else:
+            return FileResponse(open(BASE_DIR + 'files/' + filename, 'rb'))
+
+
     def get(self, request):
         filename = request.GET.get('filename', '')
         if filename == '':

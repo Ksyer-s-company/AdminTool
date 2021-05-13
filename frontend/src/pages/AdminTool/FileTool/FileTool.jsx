@@ -144,8 +144,15 @@ export default function FileTool() {
       <br />
 
       <form onSubmit={submit}>
-        <Grid spaceing={2} container direction="row" justify="flex-start" alignItems="flex-start">
-          <Grid item xs={3}>
+        <Grid
+          spaceing={2}
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="flex-start"
+          spacing={2}
+        >
+          <Grid item>
             <label htmlFor="file">
               <input
                 name="file"
@@ -160,7 +167,7 @@ export default function FileTool() {
                 选择文件
               </Button>
             </label>
-            {fileName ? '    ' + fileName : ''}
+            {'   ' + fileName + '   '}
           </Grid>
           <Grid item xs={2}>
             <Button variant="contained" color="primary" type="submit" id="btnSave">
