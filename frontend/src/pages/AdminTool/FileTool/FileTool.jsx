@@ -167,7 +167,7 @@ export default function FileTool() {
                 选择文件
               </Button>
             </label>
-            {'   ' + fileName + '   '}
+            {'   ' + fileName ? fileName : '' + '   '}
           </Grid>
           <Grid item xs={2}>
             <Button variant="contained" color="primary" type="submit" id="btnSave">

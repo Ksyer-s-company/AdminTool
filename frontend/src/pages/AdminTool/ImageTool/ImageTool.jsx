@@ -117,7 +117,7 @@ export default function ImageTool() {
         setSeverity(severity);
         setSnackBarOpen(true);
         setFileName(fileName);
-        if (severity == 'success') setInitStatus(true);
+        if (severity == 'success') window.location.reload();
       });
   };
 
@@ -153,7 +153,7 @@ export default function ImageTool() {
                         选择图片
                       </Button>
                     </label>
-                    {'   ' + fileName + '   '}
+                    {'   ' + fileName ? fileName : '' + '   '}
                   </Grid>
                   <Grid item xs={2}>
                     <Button variant="contained" color="primary" type="submit" id="btnSave">
