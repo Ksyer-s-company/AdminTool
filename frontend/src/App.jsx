@@ -28,9 +28,7 @@ const App = observer(() => (
               <Helmet>
                 <title>404 Not Found</title>
               </Helmet>
-              <div className="App">
-                <p>404 Page not found.</p>
-              </div>
+              <div className="App">404 Page not found.</div>
             </Route>
           </Switch>
         </StoreContext.Provider>
