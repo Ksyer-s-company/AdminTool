@@ -9,7 +9,7 @@ import setupRoutingStore from './utils/setupRoutingStore';
 import rootStore from './stores/RootStore';
 import './App.css';
 import IndexPage from './pages';
-import AdminTool from './pages/AdminTool';
+import AdminTool from './pages/index';
 
 export const history = setupRoutingStore(rootStore.routingStore);
 const StoreContext = React.createContext({});
