@@ -22,6 +22,7 @@ import SocialPractice from './static-SocialPractice/SocialPractice';
 import Blog from './static-Blog/Blog';
 import ImageTool from './utils-image/ImageTool';
 import EAS from './static-EAS/EAS';
+import MarkdownTool from './utils-markdown/MarkdownTool';
 
 const drawerWidth = 240;
 
@@ -104,9 +105,20 @@ const IndexPage = observer(() => {
             {[
               { text: '北京话生成器', key: 'beijinghua' },
               { text: '复读机', key: 'repeater' },
+            ].map((obj, index) => (
+              <ListItem button key={obj.key} value={obj.key} onClick={handleRowClick}>
+                <ListItemText primary={obj.text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+
+          <List>
+            {[
               { text: '导入文件', key: 'file' },
               { text: '图片显示', key: 'image' },
               { text: '代码暂存', key: 'code' },
+              { text: 'Markdown 解析', key: 'markdown' },
             ].map((obj, index) => (
               <ListItem button key={obj.key} value={obj.key} onClick={handleRowClick}>
                 <ListItemText primary={obj.text} />
@@ -135,6 +147,7 @@ const IndexPage = observer(() => {
           {appId === 'file' && <FileTool />}
           {appId === 'image' && <ImageTool />}
           {appId === 'code' && <CodeTool />}
+          {appId === 'markdown' && <MarkdownTool />}
 
           {appId === 'shsj' && <SocialPractice />}
           {appId === 'blog' && <Blog />}

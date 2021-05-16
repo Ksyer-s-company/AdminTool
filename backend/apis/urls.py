@@ -12,6 +12,8 @@ from .views.ImageDownloaderView import ImageDownloaderView
 from .views.ImageDisplayerView import ImageDisplayerView
 from .views.CodeUploaderView import CodeUploaderView
 from .views.CodeDownloaderView import CodeDownloaderView
+from .views.MarkdownDownloaderView import MarkdownDownloaderView
+from .views.MarkdownUploaderView import MarkdownUploaderView
 
 router = routers.DefaultRouter()
 
@@ -27,6 +29,8 @@ urlpatterns = [
     path('display_image', ImageDisplayerView.as_view()),
     path('upload_code', CodeUploaderView.as_view()),
     path('download_code', CodeDownloaderView.as_view()),
+    path('upload_markdown', MarkdownUploaderView.as_view()),
+    path('download_markdown', MarkdownDownloaderView.as_view()),
 
     path('', include(router.urls)),
 ]
