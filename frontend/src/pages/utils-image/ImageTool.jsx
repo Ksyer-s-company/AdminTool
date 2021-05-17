@@ -3,6 +3,7 @@ import { serverConfig } from '../../config';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
+import SimpleSnackbar from '../SimpleSnackbar';
 import axios from 'axios';
 import ImageTable from './ImageTable';
 
@@ -26,7 +27,6 @@ export default function ImageTool() {
   const [snackBarOpen, setSnackBarOpen] = useState(false);
   const [fileName, setFileName] = useState('');
   const [imageBase64, setImageBase64] = useState();
-  const [initStatus, setInitStatus] = useState(false);
 
   const handleSelectFile = (e) => {
     var filePath = e.target.value.split('\\');
@@ -34,38 +34,20 @@ export default function ImageTool() {
     setFileName(fileName);
   };
 
-  const handleDownload = (e) => {
-    let formData = new FormData();
-    var filename = e;
-    formData.append('filename', filename);
-
-    let url = new URL('/api/download_image', serverConfig.baseUrl);
-    axios({
-      method: 'POST',
-      url: url,
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      responseType: 'arraybuffer',
-    }).then((e) => {
-      var buff = e.data;
-      let url = window.URL.createObjectURL(new Blob([buff], { type: 'arraybuffer' }));
-      const link = document.createElement('a');
-      link.style.display = 'none';
-      link.href = url;
-      link.setAttribute('download', filename);
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    });
+  const handleSnackBarClose = () => {
+    setSnackBarOpen(false);
   };
 
   const handleDisplay = (e) => {
+    console.log(e);
     let formData = new FormData();
     formData.append('filename', e);
     let url = new URL('/api/display_image', serverConfig.baseUrl);
-    var warningMessage, severity, fileName;
+    var tempWarningMessage;
+    var tempSeverity;
+    var tempFileName;
+    var tempImageBase64;
+
     axios({
       method: 'POST',
       url: url,
@@ -75,18 +57,23 @@ export default function ImageTool() {
       },
     })
       .then(function (response) {
-        setImageBase64(response.data.image);
+        tempImageBase64 = response.data.image;
+        tempWarningMessage = response.data.warningMessage;
+        tempSeverity = response.data.severity;
+        tempFileName = response.data.fileName;
       })
       .catch((e) => {
         console.log('error: ', e);
-        warningMessage = '系统错误';
-        severity = 'error';
+        tempImageBase64 = '';
+        tempWarningMessage = '系统错误';
+        tempSeverity = 'error';
       })
       .finally(() => {
-        setWarningMessage(warningMessage);
-        setSeverity(severity);
+        setImageBase64(tempImageBase64);
+        setWarningMessage(tempWarningMessage);
+        setSeverity(tempSeverity);
+        setFileName(tempFileName);
         setSnackBarOpen(true);
-        setFileName(fileName);
       });
   };
 
@@ -95,7 +82,10 @@ export default function ImageTool() {
 
     let formData = new FormData(e.target);
     let url = new URL('/api/upload_image', serverConfig.baseUrl);
-    var warningMessage, severity, fileName;
+    var tempWarningMessage;
+    var tempSeverity;
+    var tempFileName;
+    var tempImageBase64;
     axios({
       method: 'POST',
       url: url,
@@ -105,19 +95,24 @@ export default function ImageTool() {
       },
     })
       .then(function (response) {
-        setImageBase64(response.data.image);
+        tempImageBase64 = response.data.image;
+        tempWarningMessage = response.data.warningMessage;
+        tempSeverity = response.data.severity;
+        tempFileName = response.data.fileName;
       })
       .catch((e) => {
         console.log('error: ', e);
-        warningMessage = '系统错误';
-        severity = 'error';
+        tempImageBase64 = '';
+        tempWarningMessage = '系统错误';
+        tempSeverity = 'error';
       })
       .finally(() => {
-        setWarningMessage(warningMessage);
-        setSeverity(severity);
+        setImageBase64(tempImageBase64);
+        setWarningMessage(tempWarningMessage);
+        setSeverity(tempSeverity);
+        setFileName(tempFileName);
         setSnackBarOpen(true);
-        setFileName(fileName);
-        if (severity == 'success') window.location.reload();
+        if (tempSeverity == 'success') window.location.reload();
       });
   };
 
@@ -127,7 +122,7 @@ export default function ImageTool() {
         <Grid item>
           <Grid container item direction="column" alignItems="flex-start" spacing={4}>
             <Grid item>
-              <ImageTable handleDownload={handleDownload} handleDisplay={handleDisplay} />
+              <ImageTable handleDisplay={handleDisplay} />
             </Grid>
             <Grid item>
               <form onSubmit={imageUpload}>
@@ -170,6 +165,12 @@ export default function ImageTool() {
           <img src={imageBase64} />
         </Grid>
       </Grid>
+      <SimpleSnackbar
+        snackBarOpen={snackBarOpen}
+        warningMessage={warningMessage}
+        severity={severity}
+        handleSnackBarClose={handleSnackBarClose}
+      />
     </Grid>
   );
 }

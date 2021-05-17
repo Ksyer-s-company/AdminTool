@@ -18,9 +18,17 @@ class FileDownloaderView(View):
                 'warningMessage': '文件名为空',
                 'severity': 'warning',
             }
-            return JsonResponse({'msg': 'msg'})
+            return JsonResponse(data)
         else:
-            return FileResponse(open(BASE_DIR + 'files/' + filename, 'rb'))
+            if not os.path.exists(BASE_DIR + 'files/' + filename):
+                data = {
+                    'status_code': 404,
+                    'warningMessage': '文件不存在',
+                    'severity': 'warning',
+                }
+                return JsonResponse(data)
+            else:
+                return FileResponse(open(BASE_DIR + 'files/' + filename, 'rb'))
 
 
     def get(self, request):

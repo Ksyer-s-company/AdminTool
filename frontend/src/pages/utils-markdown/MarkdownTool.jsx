@@ -23,7 +23,7 @@ export default function MarkdownTool() {
             }}
             color={articleUrlFlag ? 'primary' : 'black'}
           >
-            代码暂存
+            Markdown 解析
           </Button>
           <Button
             onClick={() => {
@@ -33,7 +33,7 @@ export default function MarkdownTool() {
             }}
             color={articleUrlFlag ? 'black' : 'primary'}
           >
-            查看暂存代码
+            查看 Markdown
           </Button>
         </ButtonGroup>
       </Grid>

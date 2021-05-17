@@ -3,28 +3,14 @@ from django.views import View
 import json
 import os
 import base64
+from ..peewee_model import ImageTool
+from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/../../'
 
 class ImageUploaderView(View):
     def __init__(self):
         super().__init__()
-    
-    def _upload(self, my_file):
-        filename = BASE_DIR + 'images/' + my_file.name
-        for i in range(1000):
-            F = ".".join(filename.split('.')[:-1]) + "_" + str(i) + '.' + filename.split('.')[-1]
-            if not os.path.exists(F):
-                with open(F, 'wb+') as f:
-                    for chunk in my_file.chunks():
-                        f.write(chunk)
-                return
-
-        filename = BASE_DIR + 'images/' + my_file.name
-        with open(filename, 'wb+') as f:
-            for chunk in my_file.chunks():
-                f.write(chunk)
-        
 
     def post(self, request):
         my_file = request.FILES.get('file', None)
@@ -42,10 +28,11 @@ class ImageUploaderView(View):
             base64_data = base64.b64encode(my_file.read())
             s = base64_data.decode()
             s = "data:image/jpeg;base64," + s
-            self._upload(my_file)
+            instance = ImageTool(img_base64=s, generate_time=datetime.now(), img_filename=my_file.name)
+            instance.save()
 
             data = {
-                'images': s,
+                'images': my_file.name,
                 'status_code': '200',
                 'warningMessage': '上传成功',
                 'severity': 'Success',
@@ -60,7 +47,8 @@ class ImageUploaderView(View):
         return JsonResponse(data, safe=False)
     
     def get(self, request):
-        for _, _, c in os.walk(BASE_DIR + 'files/'):
-            t = c
-        t = sorted(t)
-        return JsonResponse(t, safe=False, json_dumps_params={'ensure_ascii':False})
+        all_imgs = ImageTool.select().order_by(ImageTool.img_id)
+        ret = []
+        for c in all_imgs:
+            ret.append(c.img_filename)
+        return JsonResponse(ret, safe=False)

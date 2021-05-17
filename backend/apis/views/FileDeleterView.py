@@ -3,6 +3,7 @@ from django.views import View
 import json
 import os
 import sys
+from ..peewee_model import FileTool
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/../../'
 
@@ -30,6 +31,8 @@ class FileDeleterView(View):
             return JsonResponse(data, safe=False)
         
         os.remove(full_filename)
+        FileTool.delete().where(FileTool.file_path==filename).execute()
+        
         data = {
             'status_code': 200,
             'warningMessage': '删除成功',
@@ -37,9 +40,6 @@ class FileDeleterView(View):
         }
 
         return JsonResponse(data, safe=False)
-  
+
     def get(self, request):
-        for _, _, c in os.walk(BASE_DIR + 'files/'):
-            t = c
-        t = sorted(t)
-        return JsonResponse(t, safe=False)
+        return JsonResponse({}, safe=False)

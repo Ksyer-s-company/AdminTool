@@ -1,5 +1,7 @@
 from django.http import JsonResponse, Http404
 from django.views import View
+from ..peewee_model import Beijinghua
+from datetime import datetime
 
 def handle(str):
     ret = ''
@@ -36,6 +38,8 @@ class BeijinghuaView(View):
                     'severity': 'warning',
                 }
             else:
+                instance = Beijinghua(input_str=input_str, generate_time=datetime.now())
+                instance.save()
                 ret = {
                     'data': 'Success',
                     'output_str': handle(input_str),

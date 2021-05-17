@@ -53,8 +53,8 @@ export default function FileTable(props) {
       .then((data) => {
         setUploadConceptData(data);
       })
-      .catch(function (error) {
-        console.log('error: ', error);
+      .catch(function (e) {
+        console.log('error: ', e);
       });
   }, []);
 

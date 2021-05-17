@@ -3,6 +3,7 @@ from django.views import View
 import json
 import os
 import sys
+from  ..peewee_model import MarkdownTool
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/../../'
 
@@ -20,19 +21,25 @@ class MarkdownDownloaderView(View):
                 'warningMessage': 'ID为空',
                 'severity': 'warning',
             }
-        filename = BASE_DIR + 'markdowns/' + ID
-        if not os.path.exists(filename):
+        markdown_query_result = MarkdownTool.select().filter(markdown_id=ID)
+        if len(markdown_query_result) == 0:
             data = {
                 'data': '',
                 'status_code': 500,
                 'warningMessage': 'ID不存在',
                 'severity': 'warning',
             }
-        else:
-            with open(filename, 'r') as f:
-                code = f.readlines()
+        elif len(markdown_query_result) > 1:
             data = {
-                'data': ''.join(code),
+                'data': '',
+                'status_code': 401,
+                'warningMessage': 'ID不唯一，请检查数据库',
+                'severity': 'warning',
+            }
+        else:
+            markdown = markdown_query_result[0].markdown_text
+            data = {
+                'data': markdown,
                 'status_code': 200,
                 'warningMessage': 'Success',
                 'severity': 'success',
@@ -40,4 +47,4 @@ class MarkdownDownloaderView(View):
         return JsonResponse(data, safe=False, )
 
     def get(self, request):
-        return JsonResponse({'msg': 'msg'}, safe=False)
+        return JsonResponse({}, safe=False)

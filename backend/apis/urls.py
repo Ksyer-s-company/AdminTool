@@ -8,7 +8,6 @@ from .views.FileUploaderView import FileUploaderView
 from .views.FileDownloaderView import FileDownloaderView
 from .views.FileDeleterView import FileDeleterView
 from .views.ImageUploaderView import ImageUploaderView
-from .views.ImageDownloaderView import ImageDownloaderView
 from .views.ImageDisplayerView import ImageDisplayerView
 from .views.CodeUploaderView import CodeUploaderView
 from .views.CodeDownloaderView import CodeDownloaderView
@@ -25,7 +24,6 @@ urlpatterns = [
     path('download_file', FileDownloaderView.as_view()),
     path('delete_file', FileDeleterView.as_view()),
     path('upload_image', ImageUploaderView.as_view()),
-    path('download_image', ImageDownloaderView.as_view()),
     path('display_image', ImageDisplayerView.as_view()),
     path('upload_code', CodeUploaderView.as_view()),
     path('download_code', CodeDownloaderView.as_view()),

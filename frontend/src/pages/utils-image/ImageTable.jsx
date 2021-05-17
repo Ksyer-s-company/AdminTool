@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -38,22 +38,22 @@ const StyledTableRow = withStyles((theme: Theme) =>
 //创建ParentComponent调用函数,通过axios拿到后台返回的数据
 
 export default function ImageTable(props) {
-  const { handleDownload, handleDisplay } = props;
+  const { handleDisplay } = props;
   const initConceptData = [];
   const [conceptData, setConceptData] = useState(initConceptData);
 
   useEffect(() => {
-    let url = new URL('/api/download_image', serverConfig.baseUrl);
+    let url = new URL('/api/upload_image', serverConfig.baseUrl);
     axios
       .get(url)
       .then((response) => response.data)
       .then((data) => {
         setConceptData(data);
       })
-      .catch(function (error) {
-        console.log('error: ', error);
+      .catch(function (e) {
+        console.log('error: ', e);
       });
-  }, []);
+  }, [1]);
 
   return (
     <div id="app">
@@ -66,9 +66,6 @@ export default function ImageTable(props) {
                   文件名 <span></span>
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  下载 <span></span>
-                </StyledTableCell>
-                <StyledTableCell align="center">
                   查看 <span></span>
                 </StyledTableCell>
               </StyledTableRow>
@@ -77,17 +74,6 @@ export default function ImageTable(props) {
               {Array.from(conceptData).map((user) => (
                 <StyledTableRow>
                   <StyledTableCell align="center">{user}</StyledTableCell>
-                  <StyledTableCell align="center">
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => {
-                        handleDownload(user);
-                      }}
-                    >
-                      下载
-                    </Button>
-                  </StyledTableCell>
                   <StyledTableCell align="center">
                     <Button
                       variant="contained"

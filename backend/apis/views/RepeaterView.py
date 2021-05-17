@@ -1,5 +1,8 @@
 from django.http import JsonResponse, Http404
 from django.views import View
+from ..peewee_model import Repeater
+from datetime import datetime
+
 
 def handle(input_str, emoji_selected):
     ret = ''
@@ -36,6 +39,8 @@ class RepeaterView(View):
                     'severity': 'warning',
                 }
             else:
+                instance = Repeater(input_str=input_str, emoji=emoji_selected, generate_time=datetime.now())
+                instance.save()
                 ret = {
                     'data': 'Success',
                     'output_str': handle(input_str, emoji_selected),

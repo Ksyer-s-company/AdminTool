@@ -2,6 +2,8 @@ from django.http import JsonResponse, Http404
 from django.views import View
 import json
 import os
+from ..peewee_model import FileTool
+from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/../../'
 
@@ -13,6 +15,8 @@ class FileUploaderView(View):
         with open(BASE_DIR + 'files/' + my_file.name, 'wb+') as f:
             for chunk in my_file.chunks():
                 f.write(chunk)
+        instance = FileTool(file_path=my_file.name, generate_time=datetime.now())
+        instance.save()
 
     def post(self, request):
         my_file = request.FILES.get('file', None)
@@ -42,7 +46,8 @@ class FileUploaderView(View):
         return JsonResponse(data, safe=False, json_dumps_params={'ensure_ascii':False})
     
     def get(self, request):
-        for _, _, c in os.walk(BASE_DIR + 'files/'):
-            t = c
-        t = sorted(t)
-        return JsonResponse(t, safe=False)
+        all_files = FileTool.select().order_by(FileTool.file_id)
+        ret = []
+        for file in all_files:
+            ret.append(file.file_path)
+        return JsonResponse(ret, safe=False)

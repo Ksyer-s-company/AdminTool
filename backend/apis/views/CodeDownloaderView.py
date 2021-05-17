@@ -3,6 +3,7 @@ from django.views import View
 import json
 import os
 import sys
+from  ..peewee_model import CodeTool
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/../../'
 
@@ -20,19 +21,25 @@ class CodeDownloaderView(View):
                 'warningMessage': 'ID为空',
                 'severity': 'warning',
             }
-        filename = BASE_DIR + 'codes/' + ID
-        if not os.path.exists(filename):
+        code_query_result = CodeTool.select().filter(code_id=ID)
+        if len(code_query_result) == 0:
             data = {
                 'data': '',
                 'status_code': 500,
                 'warningMessage': 'ID不存在',
                 'severity': 'warning',
             }
-        else:
-            with open(filename, 'r') as f:
-                code = f.readlines()
+        elif len(code_query_result) > 1:
             data = {
-                'data': ''.join(code),
+                'data': '',
+                'status_code': 401,
+                'warningMessage': 'ID不唯一，请检查数据库',
+                'severity': 'warning',
+            }
+        else:
+            code = code_query_result[0].code
+            data = {
+                'data': code,
                 'status_code': 200,
                 'warningMessage': 'Success',
                 'severity': 'success',
@@ -40,4 +47,4 @@ class CodeDownloaderView(View):
         return JsonResponse(data, safe=False, )
 
     def get(self, request):
-        return JsonResponse({'msg': 'msg'}, safe=False)
+        return JsonResponse({}, safe=False)
