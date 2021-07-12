@@ -46,8 +46,7 @@ class FileUploaderView(View):
         return JsonResponse(data, safe=False, json_dumps_params={'ensure_ascii':False})
     
     def get(self, request):
-        all_files = FileTool.select().order_by(FileTool.file_id)
-        ret = []
-        for file in all_files:
-            ret.append(file.file_path)
-        return JsonResponse(ret, safe=False)
+        path = BASE_DIR + 'files/'
+        for _, _, c in os.walk(path):
+            pass
+        return JsonResponse(c, safe=False, json_dumps_params={'ensure_ascii':False})

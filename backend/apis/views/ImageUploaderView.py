@@ -2,7 +2,6 @@ from django.http import JsonResponse, Http404, HttpResponse
 from django.views import View
 import json
 import os
-import base64
 from ..peewee_model import ImageTool
 from datetime import datetime
 
@@ -25,10 +24,7 @@ class ImageUploaderView(View):
             return JsonResponse(data, safe=False, json_dumps_params={'ensure_ascii':False})
         
         try:
-            base64_data = base64.b64encode(my_file.read())
-            s = base64_data.decode()
-            s = "data:image/jpeg;base64," + s
-            instance = ImageTool(img_base64=s, generate_time=datetime.now(), img_filename=my_file.name)
+            instance = ImageTool(generate_time=datetime.now(), img_filename=my_file.name)
             instance.save()
 
             data = {
@@ -47,8 +43,7 @@ class ImageUploaderView(View):
         return JsonResponse(data, safe=False)
     
     def get(self, request):
-        all_imgs = ImageTool.select().order_by(ImageTool.img_id)
-        ret = []
-        for c in all_imgs:
-            ret.append(c.img_filename)
-        return JsonResponse(ret, safe=False)
+        path = BASE_DIR + 'images/'
+        for _, _, c in os.walk(path):
+            pass
+        return JsonResponse(c, safe=False, json_dumps_params={'ensure_ascii':False})

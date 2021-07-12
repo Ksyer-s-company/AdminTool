@@ -40,7 +40,11 @@ class ImageDisplayerView(View):
                     'severity': 'warning',
                 }
             else:
-                s = img_query_result[0].img_base64
+                filename = BASE_DIR + 'images/' + img_query_result[0].img_filename
+                print(filename)
+                with open(filename, 'rb') as f:
+                    s = base64.b64encode(f.read())
+                    s = "data:image/png;base64," + str(s)[2: -1]
                 data = {
                     'image': s,
                     'status_code': '200',
@@ -57,7 +61,7 @@ class ImageDisplayerView(View):
         return JsonResponse(data, safe=False)
     
     def get(self, request):
-        ret = []
-        for c in ImageTool.select().order_by(ImageTool.img_id):
-            ret.append(c.img_filename)
-        return JsonResponse(ret, safe=False, json_dumps_params={'ensure_ascii':False})
+        path = BASE_DIR + 'images/'
+        for _, _, c in os.walk(path):
+            pass
+        return JsonResponse(c, safe=False, json_dumps_params={'ensure_ascii':False})
