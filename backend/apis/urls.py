@@ -13,12 +13,14 @@ from .views.CodeUploaderView import CodeUploaderView
 from .views.CodeDownloaderView import CodeDownloaderView
 from .views.MarkdownDownloaderView import MarkdownDownloaderView
 from .views.MarkdownUploaderView import MarkdownUploaderView
+from .views.MaddogView import MaddogView
 
 router = routers.DefaultRouter()
 
 urlpatterns = [
     path('beijinghua', BeijinghuaView.as_view()),
     path('repeater', RepeaterView.as_view()),
+    path('maddog', MaddogView.as_view()),
     
     path('upload_file', FileUploaderView.as_view()),
     path('download_file', FileDownloaderView.as_view()),

@@ -17,6 +17,14 @@ class Beijinghua(BaseModel):
     class Meta:
         table_name = 'Beijinghua'
 
+class Maddog(BaseModel):
+    maddog_id = AutoField()
+    generate_time = DateTimeField(null=True)
+    input_str = CharField(null=True)
+
+    class Meta:
+        table_name = 'Maddog'
+
 class CodeTool(BaseModel):
     code = CharField(null=True)
     code_id = AutoField()
@@ -35,7 +43,6 @@ class FileTool(BaseModel):
 
 class ImageTool(BaseModel):
     generate_time = DateTimeField(null=True)
-    img_base64 = TextField(null=True)
     img_filename = CharField(null=True)
     img_id = AutoField()
 

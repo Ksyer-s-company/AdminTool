@@ -17,6 +17,7 @@ import { history } from '../App';
 import FileTool from './utils-file/FileTool';
 import Beijinghua from './feature-beijinghua/beijinghua';
 import Repeater from './feature-repeater/Repeater';
+import Maddog from './feature-maddog/Maddog';
 import CodeTool from './utils-code/CodeTool';
 import SocialPractice from './static-SocialPractice/SocialPractice';
 import Blog from './static-Blog/Blog';
@@ -105,6 +106,7 @@ const IndexPage = observer(() => {
             {[
               { text: '北京话生成器', key: 'beijinghua' },
               { text: '复读机', key: 'repeater' },
+              { text: 'maddog', key: 'maddog' },
             ].map((obj, index) => (
               <ListItem button key={obj.key} value={obj.key} onClick={handleRowClick}>
                 <ListItemText primary={obj.text} />
@@ -144,6 +146,8 @@ const IndexPage = observer(() => {
         <Typography paragraph>
           {appId === 'beijinghua' && <Beijinghua />}
           {appId === 'repeater' && <Repeater />}
+          {appId === 'maddog' && <Maddog />}
+
           {appId === 'file' && <FileTool />}
           {appId === 'image' && <ImageTool />}
           {appId === 'code' && <CodeTool />}
